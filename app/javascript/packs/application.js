@@ -10,22 +10,24 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-import { App } from '@inertiajs/inertia-react'
-import React from 'react'
-import { render } from 'react-dom'
+import { App } from "@inertiajs/inertia-react";
+import React from "react";
+import { render } from "react-dom";
 
-import '@shopify/polaris/dist/styles.css'
+import "@shopify/polaris/dist/styles.css";
 
-require('@rails/ujs').start()
-require('@rails/activestorage').start()
-require('channels')
+require("@rails/ujs").start();
+require("@rails/activestorage").start();
+require("channels");
 
-const el = document.getElementById('app')
+const el = document.getElementById("app");
 
 render(
   <App
     initialPage={JSON.parse(el.dataset.page)}
-    resolveComponent={name => import(`./Pages/${name}`).then(module => module.default)}
+    resolveComponent={(name) =>
+      import(`./Pages/${name}`).then((module) => module.default)
+    }
   />,
   el
-)
+);
