@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import AppLayout from "../../shared/AppLayout";
 import {
@@ -11,11 +11,17 @@ import {
 } from "@shopify/polaris";
 
 const Index = ({ user, orders, sort }) => {
-  const [sortValue, setSortValue] = useState(sort);
-  const handleSortChange = (selected) => {
+  const [sortValue, setSortValue] = useState("desc");
+
+  function handleSortChange(selected) {
     setSortValue(selected);
     Inertia.get("/orders?sort=" + selected, { only: ["orders"] });
-  };
+  }
+
+  useEffect(() => {
+    setSortValue(sort);
+  }, [sort]);
+
   return (
     <Page title="Orders">
       <Card>
